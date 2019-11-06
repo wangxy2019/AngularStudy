@@ -1,0 +1,28 @@
+<!-- <input type="text" [value]="username" (input)="username = $event.target.value">
+<input type="text" [(ngModel)]="username">
+<input type="text" [value]="username" (input)="username = $event.target.value">
+<span (click)="handleClick()">{{result}}</span>
+<span>你好, {{username}}</span> -->
+
+<!-- 指令没有模板 指令需要寄宿在Html模板之上 -->
+<!-- <div appGridItem *ngFor="let item of channels">
+    <img [src]="item.icon" [alt]="item.alt" [link]="item.link" [appGridItemImage]="'4rem'" [fitMode]="'none'">
+    <span [appGridItemTitle]="'1rem'">{{item.title}}</span>
+</div> -->
+
+<!-- 容器组件 此处选择内容投影具体内容 尽量添加select去过滤下以防产生不可控的投影-->
+<!-- select 选择标签 -->
+<!-- <ng-content select="span"></ng-content> -->
+<!-- <ng-content select=".showdemo"></ng-content> -->
+<!-- <ng-content select="[appGridItem]"></ng-content> -->
+
+
+<!-- 容器组件 最理想状态 除了内容投影还想控制显示布局 此时需要一个容器-->
+<div class="container" [ngStyle]="{
+        'grid-template-rows': templateRows,
+        'grid-template-columns': templateColumns}" (scroll)="handleScroll($event)">
+    <ng-content select="[appGridItem]"></ng-content>
+</div>
+<div class="underline" *ngIf="scrollable">
+    <div class="highlight" [ngStyle]="{'margin': sliderMargin}"></div>
+</div>

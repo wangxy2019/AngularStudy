@@ -1,0 +1,48 @@
+
+ul {
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0 5px;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+.first {
+    color: green;
+}
+
+.active {
+    color: red;
+}
+
+.indicator {
+    height: 2px;
+    width: 2rem;
+    margin-top: 2px;
+}
+
+.even{
+    font-weight: 900;
+}
+
+.odd {
+    font-weight: 100;
+}

@@ -1,0 +1,34 @@
+<!-- <app-image-slider [sliders]="imageSliders" #imageSlider></app-image-slider> -->
+
+<!-- <a href="#" (click)="handleChange()">aaaa</a> -->
+<div *ngIf="selectedTabLink === 'hot' else other">
+  <app-horizontal-grid [(username)]="username">
+    <span appGridItem *ngFor="let item of channels">
+      <img [src]="item.icon" [alt]="item.alt" [link]="item.link" [appGridItemImage]="'4rem'" [fitMode]="'none'">
+      <span [appGridItemTitle]="'1rem'">{{item.title}}</span>
+    </span>
+
+    <!--  <div class="showdemo" appGridI tem>
+        <div [appGridItemImage]="'4rem'" [fitMode]="'none'">
+            <div [appGridItemImage]="'3rem'" style="background: red"></div>
+            <span [appGridItemTitle]="'1rem'">demo</span>
+        </div>
+    </div> -->
+  </app-horizontal-grid>
+</div>
+<ng-template #other>
+  others
+</ng-template>
+<a [routerLink]="[ 'grand' ]">link to grand</a>
+<hr><br>
+<a [routerLink]="[ 'grand' ]" routerLinkActive="active">link to grand active</a>
+<hr><br>
+<a [routerLink]="[ 'grand' ]" [queryParams]="{name: 'zhangsan'}" routerLinkActive="active">link to grand active</a>
+<hr><br>
+<a [routerLink]="[ {
+  outlets: {
+    second: ['aux']
+  }
+} ]">link to grand</a>
+<router-outlet></router-outlet>
+<router-outlet name="second"></router-outlet>

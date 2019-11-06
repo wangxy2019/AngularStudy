@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    position: relative;
+
+}
+
+.container {
+    background-color: #fff;
+    padding: 5px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    display: grid;
+    place-content: stretch;
+    place-items: center;
+    grid-gap: 0.4rem;
+    grid-auto-flow: row;
+}
+
+.underline {
+    position: absolute;
+    height: 5px;
+    width: 30%;
+    background: #ccc;
+    margin-left: 35%;
+    bottom: 0;
+
+    .highlight {
+        background: red;
+        width: 63%;
+        height: 100%;
+    }
+}
