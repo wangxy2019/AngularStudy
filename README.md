@@ -280,5 +280,7 @@ exportt class AppComponent {
 - this.route.queryParamsMap.subscribe(params => {...});
 
 
-
+## 字典型数据
+- 对象字面量
+- Map数据结构需要通过`get/set`存值取值。
 
