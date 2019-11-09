@@ -1,6 +1,9 @@
-import { Component, OnInit, AfterContentInit, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, AfterViewChecked, AfterViewInit, Inject } from '@angular/core';
 import { TopMenu, Options } from '../../../shared/Components';
 import { Router } from '@angular/router';
+import { HomeService } from '../../services/home.service';
+import { token } from '../../services';
+
 
 @Component({
   selector: 'app-home-container',
@@ -9,63 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeContainerComponent implements OnInit, AfterViewInit {
 
-  TopMenu: TopMenu[] = [
-    {
-      id: 1,
-      title: '热门',
-      link: 'hot'
-    },
-    {
-      id: 2,
-      title: '男装',
-      link: 'man'
-    },
-    {
-      id: 3,
-      title: '热门',
-      link: 'hot2'
-    },
-    {
-      id: 4,
-      title: '男装',
-      link: 'man'
-    },
-    {
-      id: 5,
-      title: '热门',
-      link: ''
-    },
-    {
-      id: 6,
-      title: '男装',
-      link: ''
-    },
-    {
-      id: 7,
-      title: '热门',
-      link: ''
-    },
-    {
-      id: 8,
-      title: '男装',
-      link: ''
-    },
-    {
-      id: 9,
-      title: '男装',
-      link: ''
-    },
-    {
-      id: 10,
-      title: '热门',
-      link: ''
-    },
-    {
-      id: 11,
-      title: '男装',
-      link: ''
-    },
-  ];
+  TopMenu: TopMenu[] = [];
 
   /**
    * 画面制御
@@ -77,9 +24,15 @@ export class HomeContainerComponent implements OnInit, AfterViewInit {
     titleColor: '#333',
     indicatorColor: 'green',
   };
-
-
-  constructor(private router: Router) { }
+  /**
+   * 注解注入特殊依赖注入
+   * @param baseUrl 依赖注入的值
+   */
+  constructor(
+    private router: Router,
+    private service: HomeService,
+    @Inject(token) private baseUrl: string
+  ) { }
 
   /**
    * 处理滚动导航点击事件
@@ -102,7 +55,8 @@ export class HomeContainerComponent implements OnInit, AfterViewInit {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     // Add 'implements OnInit' to the class.
     // this.createO();
-
+    this.TopMenu = this.service.getTabs();
+    console.log('baseurl', this.baseUrl);
   }
 
   ngAfterViewInit(): void {

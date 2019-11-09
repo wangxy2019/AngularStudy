@@ -20,10 +20,17 @@ export class HomeGrandComponent implements OnInit {
 
   public data = [1, 2, 3, 4, 5];
 
+
   constructor() { }
 
   ngOnInit() {
-    this.date = new Date();
+    this.date = this.minusDays(new Date(), 60);
+  }
+
+  minusDays(date: Date, days: number) {
+    const result = new Date(date);
+    result.setDate(result.getDate() - days);
+    return result;
   }
 
 }
