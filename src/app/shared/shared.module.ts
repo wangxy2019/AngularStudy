@@ -6,7 +6,7 @@ import {
   ImageSliderComponent,
   HorizontalGridComponent
 } from './Components';
-import { GridItemDirective, GridItemImageDirective, GridItemTitleDirective } from './directives';
+import { GridItemDirective, GridItemImageDirective, GridItemTitleDirective } from './Directives';
 
 @NgModule({
   declarations: [
