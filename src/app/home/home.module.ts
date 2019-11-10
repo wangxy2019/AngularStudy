@@ -6,7 +6,9 @@ import {
   HomeContainerComponent,
   HomeDetailComponent,
   HomeGrandComponent,
-  HomeAuxComponent
+  HomeAuxComponent,
+  ParentComponent,
+  ChildComponent
 } from './components';
 import { HomeService, token } from './services';
 
@@ -17,7 +19,9 @@ import { HomeService, token } from './services';
     HomeContainerComponent,
     HomeDetailComponent,
     HomeGrandComponent,
-    HomeAuxComponent
+    HomeAuxComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     SharedModule,

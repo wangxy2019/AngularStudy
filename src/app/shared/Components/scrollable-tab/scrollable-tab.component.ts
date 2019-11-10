@@ -149,7 +149,7 @@ export class ScrollableTabComponent implements OnInit,
   ngAfterContentInit(): void {
     // Called after ngOnInit when the component's or directive's content has been initialized.
     // Add 'implements AfterContentInit' to the class.
-    console.log('组件内容投影初始化完成');
+    // console.log('组件内容投影初始化完成');
   }
   /**
    * 内容投影组件脏值检测
@@ -158,7 +158,7 @@ export class ScrollableTabComponent implements OnInit,
   ngAfterContentChecked(): void {
     // Called after every check of the component's or directive's content.
     // Add 'implements AfterContentChecked' to the class.
-    console.log('组件内容投影脏值检测');
+    // console.log('组件内容投影脏值检测');
   }
 
   /**
@@ -168,7 +168,7 @@ export class ScrollableTabComponent implements OnInit,
   ngAfterViewInit(): void {
     // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     // Add 'implements AfterViewInit' to the class.
-    console.log('组件视图初始化完成');
+    // console.log('组件视图初始化完成');
   }
   /**
    * 组件视图脏检查
@@ -177,7 +177,7 @@ export class ScrollableTabComponent implements OnInit,
   ngAfterViewChecked(): void {
     // Called after every check of the component's view. Applies to components only.
     // Add 'implements AfterViewChecked' to the class.
-    console.log('组件视图脏值检测');
+    // console.log('组件视图脏值检测');
   }
   /**
    * 组件销毁 主动清理
@@ -188,7 +188,7 @@ export class ScrollableTabComponent implements OnInit,
   ngOnDestroy(): void {
     // Called once, before the instance is destroyed.
     // Add 'implements OnDestroy' to the class.
-    console.log('组件销毁退订开始计时器清除');
+    // console.log('组件销毁退订开始计时器清除');
   }
 
   /**

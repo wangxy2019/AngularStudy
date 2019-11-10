@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ImageSlider, ImageSliderComponent, Channel } from 'src/app/shared/Components';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../../services/home.service';
@@ -6,7 +6,8 @@ import { HomeService } from '../../services/home.service';
 @Component({
   selector: 'app-home-detail',
   templateUrl: './home-detail.component.html',
-  styleUrls: ['./home-detail.component.css']
+  styleUrls: ['./home-detail.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeDetailComponent implements OnInit {
 
@@ -22,12 +23,16 @@ export class HomeDetailComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private service: HomeService
+    private service: HomeService,
+    private cd: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
     this.router.paramMap.subscribe(params => {
       this.selectedTabLink = params.get('tabLink');
+      // 由于安全策略改变，非@Input数据改变无法监听，导致路由变化被忽略
+      // 此时需要手动通知Angular框架进行检测并更新页面
+      this.cd.markForCheck();
     });
     this.router.queryParamMap.subscribe(params => {
       this.selectedTabLink = params.get('tabLink');

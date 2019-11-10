@@ -256,11 +256,29 @@ exportt class AppComponent {
 注入池，标记类如何实例化，注入使用。
 
 
+## 脏值检测 单向数据流 同步检测
+> 什么是脏值检测？
+- 当数据发生改变时更新视图(DOM)
 
+> 什么时候会触发脏值检测？
+- 浏览器事件（eg: click,mouseover,keyup）
+- setTimeout() 和 setInterval()
+- HTTP请求
 
+> 如何进行检测
+- 检查两个状态值： 当前状态和新状态
 
+> 脏值检测 第一遍检测进行页面赋值更新视图，第二遍检测视图是否更新后还有变化。
+不能在`ngAfterViewChecked`声明周期中赋值
 
+### Angular 绑定原理
+视图 > 组件实例 > 代码
 
+检查是单向数据流，检测数据特别快， OnPush策略进行优化检测(只对@Input注解变量进行检测，只检测脏值检测的数据，此时需要手动操作响应变化。)
+
+## 组件生命周期
+父组件 > 更新输入型属性 > 调用OnInit，DoCheck，OnChanges 
+>更新Dom > 脏值检测 > 调用AfterViewChecked,AfterViewInit  
 
 
 
