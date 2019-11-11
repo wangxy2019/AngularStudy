@@ -280,9 +280,27 @@ exportt class AppComponent {
 父组件 > 更新输入型属性 > 调用OnInit，DoCheck，OnChanges 
 >更新Dom > 脏值检测 > 调用AfterViewChecked,AfterViewInit  
 
+## HTTP概览
+http是一种`协议`， `服务端`与`客户端` 通过 `协议` 进行数据交互。
+Http Request / Http Response
 
+> 请求体 Request : Header + Body
+Header: 描述性问题/ Body: 详细数据
+Method: 方法 get/post/put/delete
+Url: 请求地址
+Version: 版本
+Header: {
+  key: value
+}
 
+Authorization: 鉴权，token之类的
+params: 参数
 
+> 响应体 Response : Header + Body
+Header: 描述性问题/ Body: 详细数据
+Version: 版本
+Status Code: 状态码
+Phrase: 描述性短语
 
 
 
