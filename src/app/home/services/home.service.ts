@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TopMenu, ImageSlider, Channel } from 'src/app/shared/Components';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 /**
  * 注解的参数如果不写，则编译时全部编译到js中
  * 如果写入`providedIn: 'root'` 只有使用的注入才回被编译到js中
@@ -168,18 +170,25 @@ export class HomeService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getTabs() {
-    return this.TopMenu;
+
+    return this.http.get<TopMenu[]>(`${environment.baseUrl}/banners`, { params: { icode: '123' } });
+
+    // return this.TopMenu;
   }
 
   getImageSliders() {
-    return this.imageSliders;
+    return this.http.get<ImageSlider[]>(`${environment.baseUrl}/imageSliders`, { params: { icode: '123' } });
+
+    // return this.imageSliders;
   }
 
   getChannels() {
-    return this.channels;
+    return this.http.get<Channel[]>(`${environment.baseUrl}/channels`, { params: { icode: '123' } });
+
+    // return this.channels;
   }
 
 }

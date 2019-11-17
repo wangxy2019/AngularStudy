@@ -11,8 +11,8 @@ import { HomeService } from '../../services/home.service';
 })
 export class HomeDetailComponent implements OnInit {
 
-  selectedTabLink: string = '';
-  username: string = '';
+  selectedTabLink = '';
+  username = '';
   /**
    * 轮播图图片数组
    */
@@ -36,11 +36,18 @@ export class HomeDetailComponent implements OnInit {
     });
     this.router.queryParamMap.subscribe(params => {
       this.selectedTabLink = params.get('tabLink');
+      this.cd.markForCheck();
     });
 
-    this.imageSliders = this.service.getImageSliders();
+    this.service.getImageSliders().subscribe(imageSliders => {
+      this.imageSliders = imageSliders;
+      this.cd.markForCheck();
+    });
 
-    this.channels = this.service.getChannels();
+    this.service.getChannels().subscribe(channels => {
+      this.channels = channels;
+      this.cd.markForCheck();
+    });
   }
 
 

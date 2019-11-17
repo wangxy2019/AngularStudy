@@ -12,7 +12,7 @@ import {
 } from './components';
 import { HomeService, token } from './services';
 
-
+import { httpInterceptorProviders } from './interceptors';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { HomeService, token } from './services';
     {
       provide: token,
       useValue: 'http:localhost:4200'
-    }
+    },
+    httpInterceptorProviders
   ]
 })
 export class HomeModule { }

@@ -20,9 +20,9 @@ export class HorizontalGridComponent implements OnInit {
   /**
    * 自定义装饰器
    */
-  @Emoki() result: string = 'www';
+  @Emoki() result = 'www';
 
-  private UserName: string = '';
+  private UserName = '';
   /**
    * ## get/set 属性存取 做各种变换
    * 1. 私有化UserName变量
@@ -36,7 +36,7 @@ export class HorizontalGridComponent implements OnInit {
   public set username(value: string) {
     this.UserName = value;
     // 表示写入后需要同步将事件发射出去
-    this.usernameChange.emit(value);
+    this.usernameChange.emit(this.UserName);
   }
   /**
    * 增加导出标识符 表示这是个事件发射器
@@ -44,8 +44,8 @@ export class HorizontalGridComponent implements OnInit {
   @Output()
   usernameChange = new EventEmitter();
 
-  @Input() cols: number = 8;
-  @Input() displayCols: number = 5;
+  @Input() cols = 8;
+  @Input() displayCols = 5;
 
   sliderMargin = '0';
 

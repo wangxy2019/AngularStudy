@@ -55,7 +55,9 @@ export class HomeContainerComponent implements OnInit, AfterViewInit {
     // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     // Add 'implements OnInit' to the class.
     // this.createO();
-    this.TopMenu = this.service.getTabs();
+    this.service.getTabs().subscribe(tabs => {
+      this.TopMenu = tabs;
+    });
     console.log('baseurl', this.baseUrl);
   }
 

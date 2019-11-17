@@ -302,8 +302,21 @@ Version: 版本
 Status Code: 状态码
 Phrase: 描述性短语
 
+## Restful API
+> POST http://local.dev/api/posts
 
+> 动词决定操作
+- GET - 查询
+- POST - 新增
+- PUT - 更改
+- DELETE - 删除
 
+> 名词代表资源
+- /products - 复数代表集合
+- /products/{id}路径参数取得特定条目
 
-
-
+> 响应状态码
+- 2xx成功
+- 3xx重定向
+- 4xx客户端错误
+- 5xx服务端错误
