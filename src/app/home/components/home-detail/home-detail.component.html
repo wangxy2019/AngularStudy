@@ -1,7 +1,7 @@
 <!-- <app-image-slider [sliders]="imageSliders" #imageSlider></app-image-slider> -->
 
 <!-- <a href="#" (click)="handleChange()">aaaa</a> -->
-<div *ngIf="selectedTabLink === 'hot' else other">
+<div *ngIf="(selectedTabLink$ | async) === 'hot' else other">
   <app-horizontal-grid [(username)]="username">
     <span appGridItem *ngFor="let item of channels">
       <img [src]="item.icon" [alt]="item.alt" [link]="item.link" [appGridItemImage]="'4rem'" [fitMode]="'none'">

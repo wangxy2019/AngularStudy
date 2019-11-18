@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ImageSlider, ImageSliderComponent, Channel } from 'src/app/shared/Components';
 import { ActivatedRoute } from '@angular/router';
 import { HomeService } from '../../services/home.service';
+import { filter, map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-detail',
@@ -9,15 +11,17 @@ import { HomeService } from '../../services/home.service';
   styleUrls: ['./home-detail.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeDetailComponent implements OnInit {
+export class HomeDetailComponent implements OnInit, OnDestroy {
 
-  selectedTabLink = '';
+  selectedTabLink$: Observable<string>;
   username = '';
   /**
    * 轮播图图片数组
    */
   imageSliders: ImageSlider[] = [];
   channels: Channel[] = [];
+
+  sub: Subscription;
   // @ViewChild('ImageSlider', { static: false }) imageSlider: ImageSliderComponent;
   @ViewChild(ImageSliderComponent, { static: false }) imageSlider: ImageSliderComponent;
 
@@ -28,15 +32,14 @@ export class HomeDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.router.paramMap.subscribe(params => {
-      this.selectedTabLink = params.get('tabLink');
-      // 由于安全策略改变，非@Input数据改变无法监听，导致路由变化被忽略
-      // 此时需要手动通知Angular框架进行检测并更新页面
-      this.cd.markForCheck();
-    });
-    this.router.queryParamMap.subscribe(params => {
-      this.selectedTabLink = params.get('tabLink');
-      this.cd.markForCheck();
+    this.selectedTabLink$ = this.router.paramMap
+      .pipe(
+        filter(params => params.has('tabLink')),
+        map(params => params.get('tabLink'))
+      );
+
+    this.sub = this.router.queryParamMap.subscribe(params => {
+      console.log(params);
     });
 
     this.service.getImageSliders().subscribe(imageSliders => {
@@ -49,7 +52,9 @@ export class HomeDetailComponent implements OnInit {
       this.cd.markForCheck();
     });
   }
-
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 
 
 }
